@@ -1,0 +1,21 @@
+#definition.content5-wrapper {
+    min-height: inherit;
+    background: #000;
+    color: #fff;
+}
+
+#definition .title-h1 {
+    margin-bottom: 65px;
+}
+
+#definition .title-h1 .title {
+    border-bottom: 5px solid gold;
+    padding: 0 5px 5px 5px;
+    color: #fff
+}
+
+#definition .title-content {
+    font-size: 22px;
+    margin-left: 12%;
+}
+

@@ -1,0 +1,10 @@
+#dividerSmall {
+    border-bottom: 2px solid gold;
+    margin: 50px 30% 50px 30%;
+    background: #000;
+}
+
+#dividerLarge {
+    border-bottom: 2px solid gold;
+    background: #000;
+}

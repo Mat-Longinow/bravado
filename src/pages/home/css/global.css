@@ -1,0 +1,25 @@
+body {
+    background: #000;
+}
+
+.gold {
+    color: gold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    border-bottom: 2px solid gold;
+}
+
+.margin-left {
+    display: flex;
+    margin-left: 10%;
+}
+
+.margin-right {
+    display: flex;
+    margin-right: 10%;
+}
