@@ -1,68 +1,64 @@
 import React from 'react';
-import TweenOne from 'rc-tween-one';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import QueueAnim from 'rc-queue-anim';
-import { Row, Col } from 'antd';
-import { getChildrenToRender } from '../utils';
-import { isImg } from '../utils';
-import { HomeComponentProps as FooterProps } from "../types/types";
+import { Col, Row, List } from 'antd'
+import dartAvatar from './../assets/footer/dartAvatar.png'
 
-const Footer = ({
-  id,
-  key,
-  isMobile,
-  dataSource
-}: FooterProps) => {
-  const getListChildren = (data: any) =>
-    data.map((item: any, i: number) => {
-      const { title, childWrapper, ...itemProps } = item;
-      return (
-        <Col key={i.toString()} {...itemProps} title={null} content={null}>
-          <h2 {...title}>
-            {typeof title.children === 'string' &&
-            title.children.match(isImg) ? (
-              <img src={title.children} width="100%" alt="img" />
-            ) : (
-              title.children
-            )}
-          </h2>
-          <div {...childWrapper}>
-            {childWrapper.children.map(getChildrenToRender)}
-          </div>
-        </Col>
-      );
-    });
+const Footer = () => {
 
-  const childrenToRender = getListChildren(dataSource.block.children)
+  const footerLinks = [
+    {
+      title: 'Discord',
+      link: 'https://discord.gg/kJ4dsnQJBy',
+      description: 'Come chat and apply on our discord'
+    },
+    {
+      title: 'Guild Charter',
+      link: 'https://www.wearebravado.co/guild-charter',
+      description: 'Come chat and apply on our discord'
+    }
+  ]
+
+
 
   return (
     <div
-      id={id}
-      key={key}
-      {...dataSource.wrapper}
+      id="footer"
     >
-      <OverPack {...dataSource.OverPack}>
-        <QueueAnim
-          type="bottom"
-          key="ul"
-          leaveReverse
-          component={Row}
-          {...dataSource.block}
-        >
-          {childrenToRender}
-        </QueueAnim>
-        <TweenOne
-          animation={{ y: '+=30', opacity: 0, type: 'from' }}
-          key="copyright"
-          {...dataSource.copyrightWrapper}
-        >
-          <div {...dataSource.copyrightPage}>
-            <div {...dataSource.copyright}>
-              {dataSource.copyright.children}
-            </div>
-          </div>
-        </TweenOne>
-      </OverPack>
+      <div>
+        <Row className="footer-wrapper">
+          <Col span={6}>
+            <Row className="footer-wrapper">
+              <Col>
+                <p>Made with ❤️ by D'Aartanian</p>
+              </Col>
+
+              <Col>
+                <img id="dartAvatar" alt="D'Artanian Avatar" src={dartAvatar} />
+              </Col>
+            </Row>
+
+          </Col>
+
+          <Col span={6}> </Col>
+
+          <Col span={6}> </Col>
+
+          <Col span={6}>
+            <List
+            itemLayout="horizontal"
+            dataSource={footerLinks}
+            renderItem={(item) => (
+              <List.Item>
+                <List.Item.Meta
+                title={<a href={item.link}>{item.title}</a>}
+                description={item.description}
+                />
+              </List.Item>
+              )}
+            >
+            </List>
+          </Col>
+        </Row>
+      </div>
     </div>
   )
 }

@@ -1,86 +1,27 @@
-.footer1-wrapper {
-    background: #001529;
-    overflow: hidden;
-    position: relative;
-    min-height: 360px;
-    color: #999;
-}
-.footer1-wrapper .footer1 .home-page {
-    padding: 64px 24px 80px;
-}
-.footer1-wrapper .block {
-    padding: 0 32px;
-}
-.footer1-wrapper .block .logo {
-    max-width: 180px;
-}
-.footer1-wrapper .block .slogan {
-    font-size: 12px;
-    margin-top: -20px;
-}
-.footer1-wrapper .block >h2 {
-    margin-bottom: 24px;
-    color: #ccc;
-}
-.footer1-wrapper .block a {
-    color: #999;
-    margin-bottom: 12px;
-    float: left;
-    clear: both;
-}
-.footer1-wrapper .block a:hover {
-    color: black;
-}
-.footer1-wrapper .copyright-wrapper {
-    width: 100%;
-    border-top: 1px solid #e9e9e9;
-}
-.footer1-wrapper .copyright-wrapper .home-page {
-    padding: 0 24px;
-    overflow: hidden;
-}
-.footer1-wrapper .copyright-wrapper .copyright {
-    height: 80px;
+#footer .footer-wrapper {
+    min-height: 100px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    line-height: 80px;
 }
-@media screen and (max-width: 767px) {
-    .footer1 {
-        min-height: 550px;
-    }
-    .footer1-wrapper .footer1 .home-page {
-        padding: 64px 24px 32px;
-    }
-    .footer1 .logo {
-        margin: 0 auto 24px;
-    }
-    .footer1 .block {
-        text-align: center;
-        margin-bottom: 32px;
-        padding: 0;
-    }
-    .footer1 >ul {
-        width: 90%;
-        margin: 20px auto 0;
-        padding: 10px 0;
-    }
-    .footer1 >ul >li {
-        width: 100%;
-    }
-    .footer1 >ul >li h2 {
-        margin-bottom: 10px;
-    }
-    .footer1 >ul >li li {
-        display: inline-block;
-        margin-right: 10px;
-    }
-    .footer1 .copyright-wrapper .home-page {
-        padding: 0;
-    }
-    .footer1 .copyright-wrapper .home-page .copyright {
-        font-size: 12px;
-    }
-    .footer1 .copyright span {
-        width: 90%;
-    }
+
+#dartAvatar {
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    display: flex;
+}
+
+#footer .ant-list-item a, #footer .ant-list-item div {
+    color: #fff;
+}
+
+#footer .ant-list-item-meta-description, #footer .ant-list-item-meta-title {
+    display: flex;
+}
+
+#footer .ant-list-item-meta-title a {
+    text-decoration: underline double gold ;
 }

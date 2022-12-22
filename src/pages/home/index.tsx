@@ -20,7 +20,7 @@ import './css/antMotionStyle.css';
 
 const generateIsMobile = () => (/Android|iPhone/i).test(navigator.userAgent)
 
-export const Home = () => {
+const Home = () => {
     return (
       <div
         className="templates-wrapper"
@@ -56,12 +56,9 @@ export const Home = () => {
 
         <Divider dividerSize="large"/>
 
-        <Footer1
-          id="Footer1_0"
-          key="Footer1_0"
-          dataSource={Footer10DataSource}
-          isMobile={generateIsMobile()}
-        />
+        <Footer1 />
       </div>
     )
 }
+
+export default Home

@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Home } from "./pages/home";
+import AppRouter from './router';
 
 
 function App() {
 
   return (
-    <Home />
+    <AppRouter />
   )
 }
 
