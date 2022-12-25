@@ -14,8 +14,16 @@
     display: flex;
 }
 
+#footer .ant-list-item {
+    padding: 5px 25px;
+}
+
 #footer .ant-list-item a, #footer .ant-list-item div {
     color: #fff;
+}
+
+#footer .ant-list-item a:hover {
+    color: gold;
 }
 
 #footer .ant-list-item-meta-description, #footer .ant-list-item-meta-title {

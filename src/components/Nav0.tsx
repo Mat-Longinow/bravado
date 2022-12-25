@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import TweenOne from 'rc-tween-one';
 import { Menu } from 'antd';
-import { getChildrenToRender } from '../utils';
-import { HomeComponentProps as HeaderProps } from "../types/types";
+import { getChildrenToRender } from '../pages/home/utils';
+import { HomeComponentProps as HeaderProps } from "../pages/home/types/types";
 
 const { Item, SubMenu } = Menu
 

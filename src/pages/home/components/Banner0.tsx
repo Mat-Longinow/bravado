@@ -1,11 +1,10 @@
 import React from 'react'
-import { Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import QueueAnim from 'rc-queue-anim'
 import TweenOne from 'rc-tween-one'
 import { HomeComponentProps as BannerProps } from "../types/types"
-import videoBg from '../assets/video-bg.mp4'
-import bannerLogo from '../assets/banner-logo.png'
+import videoBg from '../../../assets/video-bg.mp4'
+import bannerLogo from '../../../assets/banner-logo.png'
 
 const Banner = ({
 	id,

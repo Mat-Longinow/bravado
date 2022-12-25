@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button } from 'antd'
+import { useHistory } from 'react-router-dom'
 
 const CallToAction = () => {
+    let history = useHistory()
+
     return (
       <div
         id="callToAction"
@@ -14,8 +17,18 @@ const CallToAction = () => {
             </h1>
 
             <div className="title-content">
-              <Button size="large">Guild Charter</Button>
-              <Button size="large">Discord (Apply)</Button>
+              <Button
+                size="large"
+                onClick={() => {
+                  history.push('/guild-charter')
+                }}
+              >Guild Charter</Button>
+              <Button
+                size="large"
+                onClick={() => {
+                  window.location.href = "https://discord.gg/kJ4dsnQJBy"
+                }}
+              >Discord (Apply)</Button>
             </div>
           </div>
         </div>

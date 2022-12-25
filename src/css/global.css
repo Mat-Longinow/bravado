@@ -14,6 +14,12 @@ body {
     border-bottom: 2px solid gold;
 }
 
+.strikethrough {
+    text-decoration: line-through;
+    text-decoration-color: gold;
+    text-decoration-thickness: 2px;
+}
+
 .margin-left {
     display: flex;
     margin-left: 10%;
@@ -22,4 +28,17 @@ body {
 .margin-right {
     display: flex;
     margin-right: 10%;
+}
+
+.blank-space {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.mb-5 {
+    margin-bottom: 5%;
+}
+
+.mt-5 {
+    margin-top: 5%;
 }

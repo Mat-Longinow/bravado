@@ -8,12 +8,10 @@ const Footer = () => {
     {
       title: 'Discord',
       link: 'https://discord.gg/kJ4dsnQJBy',
-      description: 'Come chat and apply on our discord'
     },
     {
       title: 'Guild Charter',
       link: 'https://www.wearebravado.co/guild-charter',
-      description: 'Come chat and apply on our discord'
     }
   ]
 
@@ -28,7 +26,7 @@ const Footer = () => {
           <Col span={6}>
             <Row className="footer-wrapper">
               <Col>
-                <p>Made with ❤️ by D'Aartanian</p>
+                <p>Made with ❤️ by <span className="underline">D'Aartanian</span></p>
               </Col>
 
               <Col>
@@ -50,7 +48,6 @@ const Footer = () => {
               <List.Item>
                 <List.Item.Meta
                 title={<a href={item.link}>{item.title}</a>}
-                description={item.description}
                 />
               </List.Item>
               )}
