@@ -10,34 +10,8 @@ import Policies from "./components/policies";
 import Nav from "../../components/Nav";
 
 const GuildCharter = () => {
-
-	const requirementsList = [
-		{
-			title: '💬  English Speaking'
-		},
-		{
-			title: '🖥️ Discord active (voice chat required 🎙️)'
-		},
-		{
-			title: '👍🏻 Commitment to friendly, respectful & positive communication'
-		},
-		{
-			title: '🧙🏻‍♂️ 18+ age'
-		},
-		{
-			title: '⚔️ 5 Million+ PVP Fame'
-		}
-	]
-
-
 	return(
 		<div>
-			{/*<Nav0*/}
-			{/*	id="Nav0_0"*/}
-			{/*	key="Nav0_0"*/}
-			{/*	dataSource={Nav00DataSource}*/}
-			{/*	isMobile={generateIsMobile()}*/}
-			{/*/>*/}
 
 			<Nav />
 
