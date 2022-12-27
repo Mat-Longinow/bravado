@@ -34,16 +34,16 @@ const Nav = () => {
 						</Link>
 					</div>
 
-					<div className="menu-item">
-						<div className="submenu">
-							<div className="submenu-link">Tools</div>
+					{/*<div className="menu-item">*/}
+					{/*	<div className="submenu">*/}
+					{/*		<div className="submenu-link">Tools</div>*/}
 
-							<div className="dropdown-content">
-								<Link to='/loot-split'>
-									<span id="lootSplit">Loot Split Calculator</span></Link>
-							</div>
-						</div>
-					</div>
+					{/*		<div className="dropdown-content">*/}
+					{/*			<Link to='/loot-split'>*/}
+					{/*				<span id="lootSplit">Loot Split Calculator</span></Link>*/}
+					{/*		</div>*/}
+					{/*	</div>*/}
+					{/*</div>*/}
 
 					<div className="menu-item">
 						<a href={discordLink}>
