@@ -1,62 +1,58 @@
-import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
+import React, { useEffect } from 'react';
+import {Col, Layout, Row} from 'antd';
 import navLogo from './../assets/nav-logo.png'
-import { useHistory } from "react-router-dom";
-import { routesSearch } from "../util";
-import DiscordLogo from "./discordLogo";
+import { useHistory, Link } from "react-router-dom";
+import { setCurrentNavLink } from "../util";
+import discordLogo from './../assets/nav/discordLogo.png'
 
-const { Header, Content, Footer } = Layout;
+
+const { Header } = Layout;
 
 const Nav = () => {
 	let history = useHistory()
 	const discordLink = 'https://discord.gg/kJ4dsnQJBy'
 
-	const getCurrentNavLink = () => {
-		switch (window.location.pathname) {
-			case '/':
-				return 'home'
-			case '/guild-charter':
-				return 'guildCharter'
-		}
-	}
-
-	const currentNavLink: any = getCurrentNavLink()
-
-	const menuItems = [
-		{
-			label: 'Home',
-			key: 'home'
-		},
-		{
-			label: 'Guild Charter',
-			key: 'guildCharter'
-		},
-		{
-			label: '',
-			key: 'discord',
-			icon: <DiscordLogo />
-		},
-	]
+	useEffect(() => {
+		setCurrentNavLink()
+	}, [])
 
 	return (
-			<Header id="navbar">
-				<img className="logo" src={navLogo} />
+		<Header id="navbar">
+			<img className="logo" src={navLogo} />
 
-				<Menu
-					onClick={(e) => {
-						if(e.key === 'discord') {
-							window.location.href = discordLink
-						}
+			<Row>
+				<Col>
+					<div className="menu-item">
+						<Link to="/">
+							<span id="home">Home</span>
+						</Link>
+					</div>
 
-						const route: any = routesSearch(e.key)
+					<div className="menu-item">
+						<Link to="/guild-charter">
+							<span id="guildCharter">Guild Charter</span>
+						</Link>
+					</div>
 
-						history.push(route)
-					}}
-					selectedKeys={[currentNavLink]}
-					mode="horizontal"
-					items={menuItems}
-				/>
-			</Header>
+					<div className="menu-item">
+						<div className="submenu">
+							<div className="submenu-link">Tools</div>
+
+							<div className="dropdown-content">
+								<Link to='/loot-split'>
+									<span id="lootSplit">Loot Split Calculator</span></Link>
+							</div>
+						</div>
+					</div>
+
+					<div className="menu-item">
+						<a href={discordLink}>
+							<img src={discordLogo}/>
+						</a>
+					</div>
+				</Col>
+			</Row>
+		</Header>
 	);
 };
 

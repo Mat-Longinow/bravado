@@ -1,0 +1,49 @@
+#guildCharter #charterWrapper {
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#charterTitle, h2 {
+    margin-bottom: 5%;
+}
+
+#logoWrapper {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#guildCharter .charterRow {
+    margin-left: 25px;
+    line-height: 35px;
+}
+
+#guildCharter .ant-list-item-meta-title {
+    color: #fff;
+    font-size: 20px;
+}
+
+#guildCharter .ant-tabs .charterRow {
+    color: #fff;
+    font-size: 18px;
+}
+
+#guildCharter .ant-tabs-tab.ant-tabs-tab-active div {
+    color: gold;
+}
+
+#guildCharter .ant-tabs-tab div {
+    color: white;
+}
+
+#guildCharter .ant-tabs-tab div:hover {
+    color: gold;
+}
+
+#guildCharter .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+    background-color: gold;
+}
