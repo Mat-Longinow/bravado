@@ -1,9 +1,10 @@
 import React from 'react';
 import Footer from "../../components/Footer1"
-import { Row, Col } from 'antd'
+import { Row, Col, Tabs } from 'antd'
 import Divider from "../home/components/Divider";
 import './css/lootSplit.css'
 import Nav from "../../components/Nav";
+import LootSplitCalculator from "./components/lootSplitCalculator";
 
 const LootSplit = () => {
 	return(
@@ -32,6 +33,21 @@ const LootSplit = () => {
 
 					<div className="blank-space"> </div>
 
+					<div className="charterRow">
+						<Tabs
+							defaultActiveKey="1"
+						>
+							<Tabs.TabPane tab="By Loot" key="tab1">
+								<div className="blank-space"> </div>
+
+								<LootSplitCalculator />
+							</Tabs.TabPane>
+
+						</Tabs>
+					</div>
+
+
+					<div className="blank-space"> </div>
 				</Col>
 			</Row>
 

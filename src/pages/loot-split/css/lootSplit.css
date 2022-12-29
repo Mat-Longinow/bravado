@@ -1,49 +1,42 @@
-#guildCharter #charterWrapper {
+#lootSplitCalculator {
     color: #fff;
-    display: block;
     font-weight: bold;
     font-size: 20px;
 }
 
-#charterTitle, h2 {
-    margin-bottom: 5%;
-}
-
-#logoWrapper {
-    margin-top: 10%;
-    margin-bottom: 10%;
-    width: 100%;
+#lootSplitCalculator #calculateButton {
     display: flex;
-    justify-content: center;
+    text-align: right;
 }
 
-#guildCharter .charterRow {
-    margin-left: 25px;
-    line-height: 35px;
+#lootSplitCalculator .loot-split-row {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
 }
 
-#guildCharter .ant-list-item-meta-title {
-    color: #fff;
-    font-size: 20px;
+#lootSplitCalculator #number-of-players-wrapper {
+    padding-bottom: 10px;
 }
 
-#guildCharter .ant-tabs .charterRow {
-    color: #fff;
-    font-size: 18px;
+#lootSplitCalculator #each-players-split-wrapper {
+    border-top: 1px solid gold;
+    padding-top: 10px;
 }
 
-#guildCharter .ant-tabs-tab.ant-tabs-tab-active div {
-    color: gold;
+#lootSplitCalculator .loot-split-row input {
+    width: 65%;
+    height: 3em;
 }
 
-#guildCharter .ant-tabs-tab div {
-    color: white;
+#lootSplitCalculator button {
+    background: gold;
+    border: gold;
+    border-radius: 3px;
+    font-weight: bold;
 }
 
-#guildCharter .ant-tabs-tab div:hover {
-    color: gold;
-}
-
-#guildCharter .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
-    background-color: gold;
+#lootSplitCalculator button:hover {
+    background-color: #FFC400FF;
+    color: black;
 }

@@ -17,6 +17,43 @@ const setCurrentNavLink = () => {
 	document.getElementById(id)?.classList.add('menu-item-selected')
 }
 
+const formatOriginal = (elId: any, original: any) => {
+	switch (elId) {
+		case 'loot-split-amount':
+			const f = Intl.NumberFormat("en-us", {
+				currency: "USD",
+				style: "currency",
+				minimumFractionDigits: 0,
+				maximumFractionDigits: 0,
+			})
+
+			return f.format(Number(original))
+
+		default:
+			return original
+	}
+}
+
+const formatAndSaveInput = (inputString: string, elId: string) => {
+	const original = inputString.replace(/\D+/gm, '')
+	const formattedInput = formatOriginal(elId, original)
+
+	console.log('inside the formatAndUpdate 👋🏻 --> ', {
+		elId: elId,
+		original: original,
+		formattedInput: formattedInput
+	})
+
+	// @ts-ignore // hate doing this here, but there was a deep and nasty rabbit trail of TS bugs that led to this being the simplest solution
+	document.getElementById(elId)!.value = formatOriginal(elId, original)
+
+	return {
+		original: original,
+		formattedNumber: formattedInput
+	}
+}
+
 export {
-	setCurrentNavLink
+	setCurrentNavLink,
+	formatAndSaveInput
 }
