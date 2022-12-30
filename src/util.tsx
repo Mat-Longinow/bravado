@@ -25,6 +25,12 @@ const formatOriginal = (elId: any, original: any) => {
 		maximumFractionDigits: 0,
 	})
 
+	const p = Intl.NumberFormat("en-us", {
+		style: "percent",
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 0,
+	})
+
 	switch (elId) {
 		case 'loot-split-amount':
 			return f.format(Number(original))
@@ -37,6 +43,9 @@ const formatOriginal = (elId: any, original: any) => {
 
 		case 'each-players-split2':
 			return f.format(Number(original))
+
+		case 'percentage-buyout2':
+			return p.format(Number(original) / 100)
 
 		default:
 			return original
