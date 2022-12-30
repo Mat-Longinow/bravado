@@ -29,7 +29,13 @@ const formatOriginal = (elId: any, original: any) => {
 		case 'loot-split-amount':
 			return f.format(Number(original))
 
+		case 'loot-split-amount2':
+			return f.format(Number(original))
+
 		case 'each-players-split':
+			return f.format(Number(original))
+
+		case 'each-players-split2':
 			return f.format(Number(original))
 
 		default:

@@ -15,11 +15,11 @@
     padding-bottom: 25px;
 }
 
-#lootSplitCalculator #number-of-players-wrapper {
+#lootSplitCalculator #number-of-players-wrapper, #lootSplitCalculator #percentage-buyout-wrapper2 {
     padding-bottom: 10px;
 }
 
-#lootSplitCalculator #each-players-split-wrapper {
+#lootSplitCalculator #each-players-split-wrapper, #lootSplitCalculator #each-players-split-wrapper2 {
     border-top: 1px solid gold;
     padding-top: 10px;
 }
@@ -97,13 +97,13 @@
     background-color: gold;
 }
 
-#lootSplit #copyIcon {
+#lootSplit #copyIcon, #lootSplit #copyIcon2 {
     width: 25px;
     height: 25px;
     background-color: transparent;
 }
 
-body #lootSplit #checkMarkIcon {
+body #lootSplit #checkMarkIcon, body #lootSplit #checkMarkIcon2 {
     width: 30px;
     height: 30px;
     right: 5px;
@@ -114,12 +114,12 @@ body #lootSplit #checkMarkIcon {
     padding-right: 1px
 }
 
-#lootSplit #each-players-split-wrapper {
+#lootSplit #each-players-split-wrapper, #lootSplit #each-players-split-wrapper2 {
     display: flex;
     position: relative;
 }
 
-#lootSplit #each-players-split-wrapper button, #lootSplit #checkMarkIcon {
+#lootSplit #each-players-split-wrapper button, #lootSplit #each-players-split-wrapper2 button, #lootSplit #checkMarkIcon, #lootSplit #checkMarkIcon2 {
     position: absolute;
     top: 7px;
     right: 2px;
@@ -131,7 +131,7 @@ body #lootSplit #checkMarkIcon {
     position: relative;
 }
 
-#lootSplit #copyIconButton {
+#lootSplit #copyIconButton, #lootSplit #copyIconButton2 {
     cursor: pointer;
 }
 

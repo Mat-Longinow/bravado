@@ -5,6 +5,7 @@ import Divider from "../home/components/Divider";
 import './css/lootSplit.css'
 import Nav from "../../components/Nav";
 import LootSplitCalculatorByLoot from "./components/lootSplitCalculatorByLoot";
+import LootSplitCalculatorBuyout from "./components/lootSplitCalculatorBuyout";
 
 const LootSplit = () => {
 	return(
@@ -39,7 +40,7 @@ const LootSplit = () => {
 
 					<div className="charterRow">
 						<p>
-							<span className="underline">Buyout</span> is when one person buys the loot split at a % of the total and pays people a cut from that %
+							<span className="underline">Buyout</span> is when one person buys the loot split at a % of the total and pay people a cut from that %
 						</p>
 					</div>
 
@@ -65,7 +66,7 @@ const LootSplit = () => {
 							<Tabs.TabPane tab="Buyout" key="tab2">
 								<div className="blank-space"> </div>
 
-								<LootSplitCalculatorByLoot />
+								<LootSplitCalculatorBuyout />
 							</Tabs.TabPane>
 
 						</Tabs>
