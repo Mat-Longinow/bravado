@@ -18,15 +18,18 @@ const setCurrentNavLink = () => {
 }
 
 const formatOriginal = (elId: any, original: any) => {
+	const f = Intl.NumberFormat("en-us", {
+		currency: "USD",
+		style: "currency",
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 0,
+	})
+
 	switch (elId) {
 		case 'loot-split-amount':
-			const f = Intl.NumberFormat("en-us", {
-				currency: "USD",
-				style: "currency",
-				minimumFractionDigits: 0,
-				maximumFractionDigits: 0,
-			})
+			return f.format(Number(original))
 
+		case 'each-players-split':
 			return f.format(Number(original))
 
 		default:
@@ -36,6 +39,7 @@ const formatOriginal = (elId: any, original: any) => {
 
 const formatAndSaveInput = (inputString: string, elId: string) => {
 	const original = inputString.replace(/\D+/gm, '')
+
 	const formattedInput = formatOriginal(elId, original)
 
 	console.log('inside the formatAndUpdate 👋🏻 --> ', {
@@ -55,5 +59,6 @@ const formatAndSaveInput = (inputString: string, elId: string) => {
 
 export {
 	setCurrentNavLink,
+	formatOriginal,
 	formatAndSaveInput
 }
