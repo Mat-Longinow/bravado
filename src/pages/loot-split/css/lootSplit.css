@@ -20,8 +20,11 @@
 }
 
 #lootSplitCalculator #each-players-split-wrapper, #lootSplitCalculator #each-players-split-wrapper2 {
-    border-top: 1px solid gold;
     padding-top: 10px;
+}
+
+#lootSplitCalculator #calculate-button-wrapper {
+    border-bottom: 1px solid gold;
 }
 
 #lootSplitCalculator .loot-split-row input {
@@ -97,13 +100,13 @@
     background-color: gold;
 }
 
-#lootSplit #copyIcon, #lootSplit #copyIcon2 {
+#lootSplit #copyIcon, #lootSplit #copyIcon2, #lootSplit #copyIcon3 {
     width: 25px;
     height: 25px;
     background-color: transparent;
 }
 
-body #lootSplit #checkMarkIcon, body #lootSplit #checkMarkIcon2 {
+body #lootSplit #checkMarkIcon, body #lootSplit #checkMarkIcon2, body #lootSplit .checkMarkIcon {
     width: 30px;
     height: 30px;
     right: 5px;
@@ -119,7 +122,7 @@ body #lootSplit #checkMarkIcon, body #lootSplit #checkMarkIcon2 {
     position: relative;
 }
 
-#lootSplit #each-players-split-wrapper button, #lootSplit #each-players-split-wrapper2 button, #lootSplit #checkMarkIcon, #lootSplit #checkMarkIcon2 {
+#lootSplit #each-players-split-wrapper button, #lootSplit #each-players-split-wrapper2 button, #lootSplitCalculator #copyIconButton3, #lootSplit #checkMarkIcon, #lootSplit #checkMarkIcon2, #lootSplit .checkMarkIcon {
     position: absolute;
     top: 7px;
     right: 2px;
@@ -131,7 +134,35 @@ body #lootSplit #checkMarkIcon, body #lootSplit #checkMarkIcon2 {
     position: relative;
 }
 
-#lootSplit #copyIconButton, #lootSplit #copyIconButton2 {
+#lootSplit #copyIconButton, #lootSplit #copyIconButton2, #lootSplit #copyIconButton3 {
     cursor: pointer;
+}
+
+#lootSplit #partialButtons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#lootSplitCalculator .split-row-pair-wrapper {
+    display: flex;
+    align-items: center;
+    min-width: 100px;
+}
+
+#lootSplitCalculator .split-row.loot-split-row {
+    justify-content: space-around;
+}
+
+#lootSplitCalculator .split-input-wrapper {
+    position: relative;
+}
+
+#lootSplitCalculator #splitRow1 {
+    margin-top: 25px;
+}
+
+#lootSplitCalculator .split-row-pair-wrapper .ant-select {
+    width: 100%;
 }
 

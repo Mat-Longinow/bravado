@@ -17,6 +17,14 @@ const setCurrentNavLink = () => {
 	document.getElementById(id)?.classList.add('menu-item-selected')
 }
 
+const stripOutAbove20 = (elId: any, input: any) => {
+	if((elId === 'number-of-players' || 'number-of-players2') && (Number(input) > 20)) {
+		return 20
+	}
+
+	return input
+}
+
 const formatOriginal = (elId: any, original: any) => {
 	const f = Intl.NumberFormat("en-us", {
 		currency: "USD",
@@ -53,7 +61,9 @@ const formatOriginal = (elId: any, original: any) => {
 }
 
 const formatAndSaveInput = (inputString: string, elId: string) => {
-	const original = inputString.replace(/\D+/gm, '')
+	let original = inputString.replace(/\D+/gm, '')
+	// don't want jokers comin in and breaking the page, party size can't be above 20 in game anyways
+	original = stripOutAbove20(elId, original)
 
 	const formattedInput = formatOriginal(elId, original)
 

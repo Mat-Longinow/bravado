@@ -6,6 +6,7 @@ import './css/lootSplit.css'
 import Nav from "../../components/Nav";
 import LootSplitCalculatorByLoot from "./components/lootSplitCalculatorByLoot";
 import LootSplitCalculatorBuyout from "./components/lootSplitCalculatorBuyout";
+import LootSplitCalculatorPartial from "./components/lootSplitCalculatorPartial";
 
 const LootSplit = () => {
 	return(
@@ -28,19 +29,26 @@ const LootSplit = () => {
 
 					<div className="charterRow">
 						<p>
-							 Ahh... loot splits. The place where all your hard work pays off. No need for a spreadsheet or doing long division in your head. We currently have two calculators for you:
+							 Ahh... loot splits. The place where all your hard work pays off. No need for a spreadsheet
+							or doing long division in your head. We have a couple calculators that will hopefully save you some time:
 						</p>
 					</div>
 
 					<div className="charterRow">
-						<p>
+						<p className="ml-3">
 							<span className="underline">By Loot</span> is for when you are splitting the loot itself evenly amongst your party members.
 						</p>
 					</div>
 
 					<div className="charterRow">
-						<p>
-							<span className="underline">Buyout</span> is when one person buys the loot split at a % of the total and pay people a cut from that %
+						<p className="ml-3">
+							<span className="underline">Buyout</span> is when one person buys the loot split at a % of the total and pay people a cut from that %.
+						</p>
+					</div>
+
+					<div className="charterRow">
+						<p className="ml-3">
+							<span className="underline">Partial Split</span> lets you choose either Buyout or By Loot and assign each player of your party a full or partial split.
 						</p>
 					</div>
 
@@ -67,6 +75,12 @@ const LootSplit = () => {
 								<div className="blank-space"> </div>
 
 								<LootSplitCalculatorBuyout />
+							</Tabs.TabPane>
+
+							<Tabs.TabPane tab="Partial Split" key="tab3">
+								<div className="blank-space"> </div>
+
+								<LootSplitCalculatorPartial />
 							</Tabs.TabPane>
 
 						</Tabs>
