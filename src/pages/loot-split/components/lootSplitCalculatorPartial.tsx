@@ -3,15 +3,13 @@ import {Input, Button, Select, Collapse, Space} from 'antd'
 import {formatAndSaveInput, formatOriginal} from "../../../util";
 import copyIcon from './../../../assets/copy-icon.png'
 import checkMarkIcon from './../../../assets/black-check-mark.png'
-import {Simulate} from "react-dom/test-utils";
-import play = Simulate.play;
 
 const { Panel } = Collapse;
 
 interface PlayerObject {
 	name: string,
 	split: string,
-	playersSplit: any
+	playerSplit: any
 }
 
 const LootSplitCalculatorPartial = () => {
@@ -22,7 +20,9 @@ const LootSplitCalculatorPartial = () => {
 	const [playersSplits, setPlayersSplits] = useState<PlayerObject[]>([])
 
 	const generatePlayersSplitsObject = (numberOfPlayersAmount: any) => {
-		let playersSplitsObject: any = playersSplits
+		// when going from a larger party size to a smaller party size, the object held on to extra children
+		// so if going from larger to smaller, just wiping and re-writing for simplicity
+		let playersSplitsObject: any = (playersSplits.length > numberOfPlayersAmount) ? [] : playersSplits
 
 		for(let i = 0; i < Number(numberOfPlayersAmount); i++){
 			if(playersSplitsObject[i] === undefined){
@@ -33,6 +33,80 @@ const LootSplitCalculatorPartial = () => {
 		}
 
 		return playersSplitsObject
+	}
+
+	const calculatePartialSplitAmount = () => {
+		console.log('player object -->', playersSplits)
+		let splits = 0
+
+		playersSplits.forEach((player) => {
+			switch(player.split){
+				case '100':
+					splits = splits + 4
+					break
+
+				case '75':
+					splits = splits + 3
+					break
+
+				case '50':
+					splits = splits + 2
+					break
+
+				case '25':
+					splits = splits + 1
+					break
+			}
+		})
+
+		const buyoutSplitAmount = Math.floor(Number(lootSplitStartingAmount) * (Number(percentageBuyout) / 100))
+		const numAmountToBeSplit = buyoutSplit ? buyoutSplitAmount : Number(lootSplitStartingAmount)
+		const partialSplitAmount = Math.floor(numAmountToBeSplit / splits)
+
+		console.log('nummbeerrrss -->', {
+			buyoutSplitAmount: buyoutSplitAmount,
+			numAmountToBeSplit: numAmountToBeSplit,
+			partialSplit: partialSplitAmount
+		})
+
+		return partialSplitAmount
+	}
+
+	const calculatePlayerSplit = (splitAmount: any) => {
+		const partialSplitAmount = calculatePartialSplitAmount()
+
+		let playerSplit = 0
+		switch(splitAmount) {
+			case '100':
+				playerSplit = partialSplitAmount * 4
+				break;
+
+			case '75':
+				playerSplit = partialSplitAmount * 3
+				break;
+
+			case '50':
+				playerSplit = partialSplitAmount * 2
+				break;
+
+			case '25':
+				playerSplit = partialSplitAmount * 1
+				break;
+		}
+
+		console.log('playerSplit --> ', playerSplit)
+
+		return playerSplit
+	}
+
+	const calculateAllSplits = () => {
+		playersSplits.forEach((player, index) => {
+			const playerSplit = String(calculatePlayerSplit(player.split))
+
+			handleSplitDataChange(index, 'playerSplit', playerSplit)
+
+			formatAndSaveInput(playerSplit, `playerSplit${index+1}`)
+		})
 	}
 
 	const handleSplitDataChange = (i: any, dataType: any, newData: any) => {
@@ -46,11 +120,12 @@ const LootSplitCalculatorPartial = () => {
 			newPlayersSplits[i].split = newData
 		}
 
+		if(dataType === 'playerSplit') {
+			newPlayersSplits[i].playerSplit = newData
+		}
+
 		setPlayersSplits(newPlayersSplits)
 	}
-
-	// putting this here instead of using a useState as it ran in to a race condition when doing math and re-rendering
-	const playersSplit = String(Math.floor((Number(lootSplitStartingAmount) * (Number(percentageBuyout) / 100)) / Number(numberOfPlayersAmount)))
 
 	const saveInput = (elId: string, numberToSave: string) => {
 		switch (elId) {
@@ -82,10 +157,10 @@ const LootSplitCalculatorPartial = () => {
 		}, 2000)
 	}
 
-	const copyToClipboard = (checkMarkNum: string) => {
+	const copyToClipboard = (checkMarkNum: string, playerIndex: any) => {
 		showThenHideCheckMark(checkMarkNum)
 
-		navigator.clipboard.writeText(formatOriginal('each-players-split2', playersSplit))
+		navigator.clipboard.writeText(formatOriginal('each-players-split2', playersSplits[playerIndex].playerSplit))
 	}
 
 	const generateRowWrapperId = (record: any) => {
@@ -112,8 +187,8 @@ const LootSplitCalculatorPartial = () => {
 		if(record.key === '6') {
 			return (
 					<Button id="calculateButton"
-						onClick={async () => {
-							formatAndSaveInput(playersSplit, 'each-players-split2')
+						onClick={() => {
+							calculateAllSplits()
 						}}
 					>Calculate</Button>
 				)
@@ -160,7 +235,6 @@ const LootSplitCalculatorPartial = () => {
 	console.log('data -->', {
 		lootTotal2: lootSplitStartingAmount,
 		numberOfPlayers2: numberOfPlayersAmount,
-		playersSplit: playersSplit,
 		playersSplitObject: playersSplits
 	})
 
@@ -178,6 +252,7 @@ const LootSplitCalculatorPartial = () => {
 
 				if(record.title === 'Partial Splits') {
 					const splitRows = []
+
 					for(let i = 0; i < Number(numberOfPlayersAmount); i++) {
 						splitRows.push(
 							<div id={`splitRow${i+1}`} key={i} className="split-row loot-split-row margin-left margin-right">
@@ -200,20 +275,20 @@ const LootSplitCalculatorPartial = () => {
 										}}
 										options={[
 											{
-												value: '25',
-												label: '25%'
-											},
-											{
-												value: '50',
-												label: '50%'
+												value: '100',
+												label: '100%'
 											},
 											{
 												value: '75',
 												label: '75%'
 											},
 											{
-												value: '100',
-												label: '100%'
+												value: '50',
+												label: '50%'
+											},
+											{
+												value: '25',
+												label: '25%'
 											},
 										]}
 									/>
@@ -228,7 +303,7 @@ const LootSplitCalculatorPartial = () => {
 											/>
 
 											<button id="copyIconButton3">
-												<img id="copyIcon3" src={copyIcon} onClick={() => copyToClipboard(`${i+3}`)}/>
+												<img id="copyIcon3" src={copyIcon} onClick={() => copyToClipboard(`${i+3}`, `${i}`)}/>
 											</button>
 
 											<img id={`checkMarkIcon${i+3}`} className="checkMarkIcon" src={checkMarkIcon}/>
@@ -259,8 +334,6 @@ const LootSplitCalculatorPartial = () => {
 								</Space>
 							</div>
 
-
-
 							{splitRows}
 						</>
 					)
@@ -276,16 +349,6 @@ const LootSplitCalculatorPartial = () => {
 
 						<div className="inputWrapper">
 							{renderInput(record)}
-
-							{record.title === "Each Player's Split" && (
-								<>
-									<button id="copyIconButton2">
-										<img id="copyIcon2" src={copyIcon} onClick={() => copyToClipboard('2')}/>
-									</button>
-
-									<img id="checkMarkIcon2" src={checkMarkIcon}/>
-								</>
-							)}
 						</div>
 					</div>
 				)

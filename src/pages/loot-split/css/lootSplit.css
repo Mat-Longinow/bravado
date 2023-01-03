@@ -4,11 +4,6 @@
     font-size: 20px;
 }
 
-#lootSplitCalculator #calculate-button-wrapper .inputWrapper {
-    display: flex;
-    justify-content: right;
-}
-
 #lootSplitCalculator .loot-split-row {
     justify-content: space-between;
     align-items: center;
@@ -185,5 +180,14 @@ body #lootSplit #checkMarkIcon, body #lootSplit #checkMarkIcon2, body #lootSplit
 
 #lootSplitCalculator #switch-to-buyout-wrapper {
     border-bottom: 1px solid gold;
+}
+
+#lootSplitCalculator #calculate-button-wrapper {
+    margin-top: 50px;
+}
+
+#lootSplitCalculator #calculate-button-wrapper .inputWrapper {
+    display: flex;
+    justify-content: right;
 }
 

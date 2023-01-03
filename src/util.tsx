@@ -39,21 +39,18 @@ const formatOriginal = (elId: any, original: any) => {
 		maximumFractionDigits: 0,
 	})
 
-	switch (elId) {
-		case 'loot-split-amount':
+	switch (true) {
+		case /loot-split-amount/.test(elId):
 			return f.format(Number(original))
 
-		case 'loot-split-amount2':
+		case /each-players-split/.test(elId):
 			return f.format(Number(original))
 
-		case 'each-players-split':
-			return f.format(Number(original))
-
-		case 'each-players-split2':
-			return f.format(Number(original))
-
-		case 'percentage-buyout2':
+		case /percentage-buyout/.test(elId):
 			return p.format(Number(original) / 100)
+
+		case /playerSplit/.test(elId):
+			return f.format(Number(original))
 
 		default:
 			return original
@@ -62,8 +59,11 @@ const formatOriginal = (elId: any, original: any) => {
 
 const formatAndSaveInput = (inputString: string, elId: string) => {
 	let original = inputString.replace(/\D+/gm, '')
+
 	// don't want jokers comin in and breaking the page, party size can't be above 20 in game anyways
-	original = stripOutAbove20(elId, original)
+	if(elId === 'number-of-players' || elId === 'number-of-players2'){
+		original = stripOutAbove20(elId, original)
+	}
 
 	const formattedInput = formatOriginal(elId, original)
 
