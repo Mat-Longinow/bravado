@@ -36,7 +36,6 @@ const LootSplitCalculatorPartial = () => {
 	}
 
 	const calculatePartialSplitAmount = () => {
-		console.log('player object -->', playersSplits)
 		let splits = 0
 
 		playersSplits.forEach((player) => {
@@ -63,12 +62,6 @@ const LootSplitCalculatorPartial = () => {
 		const numAmountToBeSplit = buyoutSplit ? buyoutSplitAmount : Number(lootSplitStartingAmount)
 		const partialSplitAmount = Math.floor(numAmountToBeSplit / splits)
 
-		console.log('nummbeerrrss -->', {
-			buyoutSplitAmount: buyoutSplitAmount,
-			numAmountToBeSplit: numAmountToBeSplit,
-			partialSplit: partialSplitAmount
-		})
-
 		return partialSplitAmount
 	}
 
@@ -93,8 +86,6 @@ const LootSplitCalculatorPartial = () => {
 				playerSplit = partialSplitAmount * 1
 				break;
 		}
-
-		console.log('playerSplit --> ', playerSplit)
 
 		return playerSplit
 	}
@@ -231,12 +222,6 @@ const LootSplitCalculatorPartial = () => {
 			title: ''
 		},
 	]
-
-	console.log('data -->', {
-		lootTotal2: lootSplitStartingAmount,
-		numberOfPlayers2: numberOfPlayersAmount,
-		playersSplitObject: playersSplits
-	})
 
 	return (
 		<div id={'lootSplitCalculator'}>

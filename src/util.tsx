@@ -12,8 +12,6 @@ const getCurrentNavLinkId = () => {
 const setCurrentNavLink = () => {
 	const id: any = getCurrentNavLinkId()
 
-	console.log(`the id is ${id} and the pathname is ${window.location.pathname}`,)
-
 	document.getElementById(id)?.classList.add('menu-item-selected')
 }
 
@@ -66,12 +64,6 @@ const formatAndSaveInput = (inputString: string, elId: string) => {
 	}
 
 	const formattedInput = formatOriginal(elId, original)
-
-	console.log('inside the formatAndUpdate 👋🏻 --> ', {
-		elId: elId,
-		original: original,
-		formattedInput: formattedInput
-	})
 
 	// @ts-ignore // hate doing this here, but there was a deep and nasty rabbit trail of TS bugs that led to this being the simplest solution
 	document.getElementById(elId)!.value = formatOriginal(elId, original)
