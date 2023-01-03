@@ -23,8 +23,8 @@
     padding-top: 10px;
 }
 
-#lootSplitCalculator #calculate-button-wrapper {
-    border-bottom: 1px solid gold;
+#lootSplitCalculator #each-players-split-wrapper, #lootSplitCalculator #each-players-split-wrapper2 {
+    border-top: 1px solid gold;
 }
 
 #lootSplitCalculator .loot-split-row input {
@@ -164,5 +164,26 @@ body #lootSplit #checkMarkIcon, body #lootSplit #checkMarkIcon2, body #lootSplit
 
 #lootSplitCalculator .split-row-pair-wrapper .ant-select {
     width: 100%;
+}
+
+#lootSplitCalculator .split-row-description {
+    font-size: 17px;
+}
+
+#lootSplitCalculator .ant-space-vertical {
+    width: 100%;
+}
+
+#lootSplitCalculator .ant-collapse-header {
+    color: gold;
+}
+
+#lootSplitCalculator #switch-to-buyout-wrapper .inputWrapper {
+    display: flex;
+    justify-content: right;
+}
+
+#lootSplitCalculator #switch-to-buyout-wrapper {
+    border-bottom: 1px solid gold;
 }
 

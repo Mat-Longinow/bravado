@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
-import {Input, Button, Select} from 'antd'
+import {Input, Button, Select, Collapse, Space} from 'antd'
 import {formatAndSaveInput, formatOriginal} from "../../../util";
 import copyIcon from './../../../assets/copy-icon.png'
 import checkMarkIcon from './../../../assets/black-check-mark.png'
+import {Simulate} from "react-dom/test-utils";
+import play = Simulate.play;
 
+const { Panel } = Collapse;
+
+interface PlayerObject {
+	name: string,
+	split: string,
+	playersSplit: any
+}
 
 const LootSplitCalculatorPartial = () => {
-
 	const [lootSplitStartingAmount, setLootSplitStartingAmount] = useState<string>()
 	const [numberOfPlayersAmount, setNumberOfPlayersAmount] = useState<string>()
 	const [percentageBuyout, setPercentageBuyout] = useState<string>()
 	const [buyoutSplit, setBuyoutSplit] = useState(false)
-	const [playersSplits, setPlayersSplits] = useState({})
+	const [playersSplits, setPlayersSplits] = useState<PlayerObject[]>([])
 
 	const generatePlayersSplitsObject = (numberOfPlayersAmount: any) => {
-		let playersSplitsObject: any = [{
-			key: 'hello!'
-		}]
+		let playersSplitsObject: any = playersSplits
 
 		for(let i = 0; i < Number(numberOfPlayersAmount); i++){
 			if(playersSplitsObject[i] === undefined){
@@ -29,6 +35,20 @@ const LootSplitCalculatorPartial = () => {
 		return playersSplitsObject
 	}
 
+	const handleSplitDataChange = (i: any, dataType: any, newData: any) => {
+		const newPlayersSplits = playersSplits
+
+		if(dataType === 'name') {
+			newPlayersSplits[i].name = newData
+		}
+
+		if(dataType === 'split') {
+			newPlayersSplits[i].split = newData
+		}
+
+		setPlayersSplits(newPlayersSplits)
+	}
+
 	// putting this here instead of using a useState as it ran in to a race condition when doing math and re-rendering
 	const playersSplit = String(Math.floor((Number(lootSplitStartingAmount) * (Number(percentageBuyout) / 100)) / Number(numberOfPlayersAmount)))
 
@@ -39,6 +59,11 @@ const LootSplitCalculatorPartial = () => {
 				break;
 			case 'number-of-players2':
 				setNumberOfPlayersAmount(numberToSave)
+
+				if(numberToSave === '0' || numberToSave === 'undefined') {
+					setPlayersSplits([])
+				}
+
 				setPlayersSplits(generatePlayersSplitsObject(numberToSave))
 				break;
 			case 'percentage-buyout2':
@@ -61,6 +86,18 @@ const LootSplitCalculatorPartial = () => {
 		showThenHideCheckMark(checkMarkNum)
 
 		navigator.clipboard.writeText(formatOriginal('each-players-split2', playersSplit))
+	}
+
+	const generateRowWrapperId = (record: any) => {
+		if(record.key === '4') {
+			return 'switch-to-buyout-wrapper'
+		}
+
+		if(record.key === '6') {
+			return 'calculate-button-wrapper'
+		}
+
+		return `${(record.title).toLowerCase().replaceAll(' ', '-').replaceAll("'", '')}-wrapper2`
 	}
 
 	const renderInput = (record: any) => {
@@ -148,6 +185,9 @@ const LootSplitCalculatorPartial = () => {
 									<Input
 										id={`playerName${i+1}`}
 										placeholder={`Player #${i+1}`}
+										onInput={(e) => {
+											handleSplitDataChange(i, 'name', e.currentTarget.value)
+										}}
 									/>
 								</div>
 
@@ -155,6 +195,9 @@ const LootSplitCalculatorPartial = () => {
 									<Select
 										id={`playerName${i+1}`}
 										placeholder={'Split'}
+										onChange={(value) => {
+											handleSplitDataChange(i, 'split', value)
+										}}
 										options={[
 											{
 												value: '25',
@@ -206,15 +249,29 @@ const LootSplitCalculatorPartial = () => {
 
 					return (
 						<>
+							<div className="split-row loot-split-row margin-left margin-right mt-5 mb-5">
+								<Space direction="vertical">
+									<Collapse collapsible="header">
+										<Panel header="Instructions (click to expand)" key="1">
+											<p className="split-row-description">Type in the players name (simply for organization),  select the split %, and then click <span className="underline">Calculate</span> to begin calculating player splits</p>
+										</Panel>
+									</Collapse>
+								</Space>
+							</div>
+
+
+
 							{splitRows}
 						</>
 					)
 				}
 
 				return (
-					<div key={record.key}
-							 id={(record.key != '4' && record.key != '6') ? `${(record.title).toLowerCase().replaceAll(' ', '-').replaceAll("'", '')}-wrapper2` : 'calculate-button-wrapper'}
-							 className="loot-split-row margin-left margin-right">
+					<div
+						key={record.key}
+					 	id={generateRowWrapperId(record)}
+					 	className="loot-split-row margin-left margin-right"
+					>
 						<p>{record.title}</p>
 
 						<div className="inputWrapper">
